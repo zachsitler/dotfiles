@@ -1,0 +1,92 @@
+# Configs
+config defaultToCurrentScreen true
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+
+# Monitor Aliases
+alias mon-lap 2880x1800
+alias mon-tbolt 2560x1600
+
+# alias: create alias variables
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+alias alt move screenOriginX;screenOriginY screenSizeX;screenSizeY 0
+alias altrighthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY 0
+alias altlefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY 0
+alias main move screenOriginX;screenOriginY screenSizeX;screenSizeY 1
+
+# Default layouts
+default 2monitor resolutions:${mon-lap}
+default 2monitor resolutions:${mon-tbolt}
+
+# Layout when using a two monitors
+layout 2monitor 'iTerm2':REPEAT ${altrighthalf}
+layout 2monitor 'Google Chrome':REPEAT ${altlefthalf}
+layout 2monitor 'Slack':REPEAT ${main}
+layout 2monitor 'Spotify':REPEAT ${main}
+layout 2monitor 'Bear':REPEAT ${main}
+layout 2monitor 'Messages':REPEAT ${main}
+
+# Layout when using a single monitor
+layout 1monitor 'iTerm2':REPEAT ${righthalf}
+layout 1monitor 'Google Chrome':REPEAT ${lefthalf}
+layout 1monitor 'Slack':REPEAT ${full}
+layout 1monitor 'Bear':REPEAT ${full}
+layout 1monitor 'Spotify':REPEAT ${full}
+layout 1monitor 'Messages':REPEAT ${full}
+
+###############################################################################
+# Key Bindings
+###############################################################################
+
+# Hyper key
+alias hyper alt;cmd
+alias hyper-ctrl alt;ctrl;cmd
+
+# Hyper+w: Activate windows hint
+bind w:${hyper} hint nd r:${hyper} relaunch
+
+# Hyper+h: Move window to left half
+bind h:${hyper} ${lefthalf}
+
+# Hyper-ctrl+h: Move window to left screen
+bind h:${hyper-ctrl} ${alt}
+
+# Hyper+j: Move focus left
+bind j:${hyper} focus left
+
+# Hyper+k: Move focus right
+bind k:${hyper} focus right
+
+# Hyper+l: Move window to right half
+bind l:${hyper} ${righthalf}
+
+# Hyper-ctrl+l: Move window to left half
+bind l:${hyper-ctrl} ${main}
+
+# Hyper+f: Move window full screen
+bind m:${hyper} ${full}
+
+# Hyper+r: Relaunch and load config
+bind r:${hyper} relaunch
+
+# Application switcher
+bind o:${hyper} focus 'Google Chrome'
+bind ;:${hyper} focus 'iTerm2'
+bind b:${hyper} focus 'Slack'
+bind n:${hyper} focus 'Bear'
+bind p:${hyper} focus 'Spotify'
+bind ]:${hyper} focus 'Messages'
+
+# Hyper+Enter: Reset the default layout and focus Chrome and iTerm2
+bind return:${hyper} sequence layout 2monitor | focus 'Google Chrome' | focus 'iTerm2'
+
+# Hyper-ctrl+Enter: Reset the default layout and focus Chrome and iTerm2
+bind return:${hyper-ctrl} sequence layout 1monitor | focus 'Google Chrome' | focus 'iTerm2'

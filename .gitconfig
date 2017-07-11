@@ -1,0 +1,14 @@
+[user]
+	name = Zach Sitler
+	email = zachsitler@gmail.com
+[color]
+	ui = auto
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[alias]
+        lg = log --abbrev-commit --decorate --pretty=oneline
+        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+[core]
+	editor = /Applications/MacVim.app/Contents/MacOS/Vim

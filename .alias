@@ -1,0 +1,28 @@
+# FASD
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias sd='fasd -sid'     # interactive directory selection
+alias sf='fasd -sif'     # interactive file selection
+alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i' # cd with interactive selection
+
+# Vagrant
+alias vs='vagrant ssh'
+alias vu='vagrant up'
+alias vh='vagrant halt'
+alias vr='vagrant reload'
+
+# Dotfiles
+alias vconf='vi $HOME/.vimrc'
+alias zconf='vi $HOME/.zshrc'
+alias aconf='vi $HOME/.alias'
+alias sconf='vi $HOME/.slate'
+alias reload='source $HOME/.zshrc'
+alias zreload='rm ~/.zcompdump && exec zsh'
+
+# Vim
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias gvim='macvim'
+alias vi='vim'
