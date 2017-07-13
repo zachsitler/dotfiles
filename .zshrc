@@ -1,5 +1,5 @@
 # Load antigen
-source $HOME/antigen.zsh
+source /usr/local/share/antigen/antigen.zsh
 
 # Load oh-my-zsh
 antigen use oh-my-zsh
@@ -44,19 +44,17 @@ if [ -f /Users/zachsitler/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
 fi
 eval "$(rbenv init -)"
 
+# 10ms for key sequences
+KEYTIMEOUT=1
+
 # Go path
 export GOPATH=$HOME
 
+# Yarn path
 export PATH="$HOME/.yarn/bin:$PATH"
 
-# export github_token for localdeploy
-export GITHUB_TOKEN=$(cat ~/.ssh/github_token)
-
-# export lean
+# export lein
 export PATH="$PATH":~/bin
-
-# export fast ai
-source ~/src/fast-ai/courses/setup/aws-alias.sh
 
 # export anaconda
 export PATH="$HOME/anaconda/bin:$PATH"

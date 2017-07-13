@@ -1,78 +1,77 @@
-" Don't bother with vi compatibility
-set nocompatible
-
-" Enable syntax highlighting
-syntax enable
-
-" NeoBundle
+"Dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/Users/zachsitler/.vim/bundle/neobundle.vim/
+set runtimepath+=/Users/zachsitl/config/repos/github.com/Shougo/dein.vim
 
 " Required:
-call neobundle#begin(expand('/Users/zachsitler/.vim/bundle'))
+if dein#load_state('/Users/zachsitl/config')
+  call dein#begin('/Users/zachsitl/config')
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+  " Let dein manage dein
+  " Required:
+  call dein#add('/Users/zachsitl/config/repos/github.com/Shougo/dein.vim')
 
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/unite.vim'
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
-NeoBundle 'KeitaNakamura/neodark.vim'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'dart-lang/dart-vim-plugin'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'jdkanani/vim-material-theme'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kristijanhusak/vim-hybrid-material'
-NeoBundle 'nono/vim-handlebars'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'svermeulen/vim-easyclip'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-ragtag'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'vim-scripts/greplace.vim'
-NeoBundle 'vim-scripts/matchit.zip'
-NeoBundle 'arcticicestudio/nord-vim'
-NeoBundle 'larsyencken/vim-drake-syntax'
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+  " Add or remove your Bundles here:
+  call dein#add('tpope/vim-repeat')
+  call dein#add('Valloric/YouCompleteMe')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('elzr/vim-json')
+  call dein#add('jiangmiao/auto-pairs')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('svermeulen/vim-easyclip')
+  call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('vim-scripts/Align')
+  call dein#add('rakr/vim-one')
+  call dein#add('neomake/neomake')
+  call dein#add('christoomey/vim-tmux-navigator')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
-call neobundle#end()
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------"
 
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (has("nvim"))
+"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Settings
 set autoindent
@@ -92,17 +91,25 @@ set smartcase
 set noswapfile
 set hlsearch
 set laststatus=2
+set timeoutlen=1000 ttimeoutlen=0 " Don't wait for the escape sequence
+color one
 set background=dark
-color solarized
-
-" Airline theme
-"let g:airline_theme='nord'
 
 " Custom ignore options for CtrlP
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 
+" Set airline theme
+let g:airline_theme='one'
+
 " Extensions
 hi VertSplit ctermbg=black
+
+" trim trailing whitespace on command
+function! StripTrailingWhitespace()
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfunction
 
 " Keyboard shortcuts
 let mapleader = ','
@@ -118,10 +125,9 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>] :TagbarToggle<CR>
-nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+nnoremap <leader><space> :call StripTrailingWhitespace()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <silent> <space> :nohlsearch<Bar>:echo<CR>
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " L: Go to end of line
 noremap L g_
