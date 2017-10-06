@@ -1,62 +1,47 @@
-"Dein Scripts-----------------------------
+"colo seoul256-lightDein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/Users/zachsitl/config/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.vim/plugged')
+
+" Add or remove your Bundles here:
+Plug 'tpope/vim-repeat'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elzr/vim-json'
+Plug 'jiangmiao/auto-pairs'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'svermeulen/vim-easyclip'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/Align'
+Plug 'rakr/vim-one'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'rking/ag.vim'
+Plug 'w0rp/ale'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Required:
-if dein#load_state('/Users/zachsitl/config')
-  call dein#begin('/Users/zachsitl/config')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('/Users/zachsitl/config/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-  " Add or remove your Bundles here:
-  call dein#add('tpope/vim-repeat')
-  call dein#add('Valloric/YouCompleteMe')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('elzr/vim-json')
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('svermeulen/vim-easyclip')
-  call dein#add('terryma/vim-multiple-cursors')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('vim-scripts/Align')
-  call dein#add('rakr/vim-one')
-  call dein#add('neomake/neomake')
-  call dein#add('christoomey/vim-tmux-navigator')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+call plug#end()
 
 " Required:
 filetype plugin indent on
 syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------"
-
-" Required:
-filetype plugin indent on
 
 "Credit joshdick
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -100,6 +85,16 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 
 " Set airline theme
 let g:airline_theme='one'
+
+" Use deoplete by default.
+let g:deoplete#enable_at_startup = 1
+
+" Automatic format
+let g:prettier#autoformat = 0
+let g:prettier#config#trailing_comma = 'es5'
+let g:prettier#config#print_width = 120
+
+autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 
 " Extensions
 hi VertSplit ctermbg=black
